@@ -3,6 +3,7 @@ package com.kenneth.helpdesk.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kenneth.helpdesk.domain.enums.Perfil;
 
 import jakarta.persistence.Entity;
@@ -11,7 +12,8 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Tecnico extends Pessoa {
 	private static final long serialVersionUID = 1L;
-	
+
+	@JsonIgnore // Protegendo o tecnico contra a serialização
 	@OneToMany(mappedBy = "tecnico")
 	private List<Chamado> chamados = new ArrayList<>();
 
