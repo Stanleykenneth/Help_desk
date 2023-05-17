@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kenneth.helpdesk.domain.Tecnico;
+import com.kenneth.helpdesk.domain.dtos.TecnicoDTO;
 import com.kenneth.helpdesk.services.TecnicoService;
 
 @RestController
@@ -19,9 +20,9 @@ public class TecnicoResource {
 	private TecnicoService service;
 	
 	@GetMapping(value = "/{id}")// informando que está recebendo uma variável path.
-	public ResponseEntity<Tecnico> findById(@PathVariable Integer id){   //representa todas as resposta http.
+	public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id){   //representa todas as resposta http.
 		Tecnico obj = service.findById(id);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(new TecnicoDTO(obj));
 		
 	} 
 }
